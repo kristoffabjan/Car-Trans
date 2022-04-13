@@ -41,6 +41,7 @@ class Brand extends Model
 
         'date_of_go',
         'time_of_go',
+        'ride_type',
 
         'bidder_id',
     ];

@@ -48,6 +48,7 @@ class CreateBrandsTable extends Migration
             $table->time('time_of_go')->nullable();
 
             $table->integer('bidder_id')->nullable();
+            $table->integer('ride_type')->nullable();
 
             $table->timestamps();
         });

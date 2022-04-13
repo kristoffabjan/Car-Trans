@@ -17,7 +17,7 @@ class BrandController extends Controller
     }
 
     public function AllBrand(){
-        $brands = Brand::latest()->paginate(20); 
+        $brands = Brand::paginate(20); 
         $date = new Carbon;
         return view("admin.brand.index", [
             'brands' => $brands,
@@ -112,11 +112,12 @@ class BrandController extends Controller
 
             'date_of_go'=> $request->date_of_go,
             'time_of_go'=> $request->time_of_go,
+            'ride_type' => $request->ride_type,
 
             'bidder_id'=> '0',
         ]);
 
-        return Redirect()->back()->with('success', 'Brand Inserted Successfully');
+        return Redirect()->route('dashboard');
 
     }
 
@@ -300,6 +301,13 @@ class BrandController extends Controller
                 ]);
                 break;
 
+            case ('all_rides'): 
+                return view("admin.brand.index", [
+                    'brands' => $brands,
+                    'date' => $date,
+                ]);
+                break;
+
             case ('created_atdesc'): 
                 $sortByDateDesc=$brands->sortBy('created_at');
                 return view("admin.brand.index", [
@@ -309,17 +317,17 @@ class BrandController extends Controller
                 break;
 
             case ('offer'): 
-                $sortByDateDesc=$brands->sortBy('created_at');
+                $offers=$brands->where('ride_type', 1);
                 return view("admin.brand.index", [
-                    'brands' => $sortByDateDesc,
+                    'brands' => $offers,
                     'date' => $date,
                 ]);
                 break;
 
             case ('enquiry'): 
-                $sortByDateDesc=$brands->sortBy('created_at');
+                $enquiry=$brands->where('ride_type', 0);
                 return view("admin.brand.index", [
-                    'brands' => $sortByDateDesc,
+                    'brands' => $enquiry,
                     'date' => $date,
                 ]);
                 break;

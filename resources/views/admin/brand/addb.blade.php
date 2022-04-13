@@ -22,6 +22,8 @@
                                         </div>
                                         <br>
                                         
+                                        <input type="number" class="form-control" hidden id="exampleInputEmail1" value="1" name="ride_type">
+
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Type of cargo</label>
                                             <input type="text" class="form-control" id="exampleInputEmail1" name="brand_name">
@@ -358,7 +360,7 @@
                                         <br>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Departure time</label>
-                                            <input type="date" name="date_of_go" style="width: 100%">         
+                                            <input type="date" name="date_of_go" min="2022-04-10" style="width: 100%">         
                                             @error('date_of_go')
                                             <span class="text-danger">{{$message}}</span>
                                          @enderror                                    
@@ -366,7 +368,7 @@
                                         <br>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Arrival time</label>
-                                            <input type="time" name="time_of_go" style="width: 100%"> 
+                                            <input type="time" name="time_of_go"  style="width: 100%"> 
                                             @error('time_of_go')
                                             <span class="text-danger">{{$message}}</span>
                                          @enderror                                            
@@ -395,7 +397,7 @@
                                         <br>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Expiry date</label>
-                                            <input type="date" name="end_date" style="width: 100%">  
+                                            <input type="date" name="end_date" min="2022-04-10" style="width: 100%">  
                                             @error('end_date')
                                             <span class="text-danger">{{$message}}</span>
                                          @enderror                                          

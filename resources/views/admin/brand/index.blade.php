@@ -32,6 +32,7 @@
                                                 </button>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                         {{-- offers and enquiry --}}
+                                                        <li><a class="dropdown-item" value="created_atasc" href="/brand/sort/all_rides"><i class="fas fa-sort-numeric-down"></i> All rides</a></li>
                                                         <li><a class="dropdown-item" value="created_atasc" href="/brand/sort/offer"><i class="fas fa-sort-numeric-down"></i> Ride offers only</a></li>
                                                         <li><a class="dropdown-item" value="created_atasc" href="/brand/sort/enquiry"><i class="fas fa-sort-numeric-down"></i> Ride enquiry only</a></li>
                                                         
@@ -51,12 +52,12 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                        <th scope="col">Photo</th>
-                                        <th scope="col">Colection</th>
-                                        <th scope="col">Delivery</th>
-                                        <th scope="col">Details</th>
-                                        <th scope="col">Listing info</th>
-                                        <th scope="col">Check advert</th>
+                                        <th scope="col">Ride type</th>
+                                        <th scope="col">Ride</th>
+                                        <th scope="col">From</th>
+                                        <th scope="col">To</th>
+                                        <th scope="col">Price, Date</th>
+                                        <th scope="col">Go to ride</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,7 +68,15 @@
                                                     <tr data-href="{{url('brand/check/'.$brand->id)}}">
                                                         {{-- <th scope="row">{{$brands->firstItem()+$loop->index}}</th> --}}
                                                         {{-- <td >{{$brand->user->name}}</td> --}}
-                                                        <td ><img src="{{asset($brand->brand_image)}}" style="height:80px; width 70px;"  alt="">  </td>
+                                                        <td >
+                                                            @if ($brand->ride_type != null)
+                                                                @if ($brand->ride_type == 1)
+                                                                    Enquiry
+                                                                @else
+                                                                    Ride offer
+                                                                @endif
+                                                            @endif
+                                                        </td>
                                                         <td >{{$brand->brand_name}}<br>
                                                              {{$brand->weight}} kg</td>
                                                         
