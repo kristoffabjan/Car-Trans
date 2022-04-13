@@ -1,0 +1,177 @@
+html{
+    height: 100%;
+    margin: 0;
+}
+
+.top{
+    margin-bottom: 100px;
+}
+
+body {
+   
+    background-image: url("images/cesta.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 85%;
+    width: auto;
+}
+
+.logo{
+    width: 20%;
+}
+
+.container{
+    display: flex;
+    height: 95%;
+}
+
+.left-pane {
+    float: left;
+    width: 20%;
+}
+
+.mid-pane {
+    display: inline-block;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.right-pane {
+    float: right;
+    width: 20%;
+}
+
+.moto{
+    font-family: 'Goblin One', cursive;
+    color: #000;
+    font-size: 40px;
+    background: transparent;
+    padding-left: 0;
+}
+
+.ld-div{
+    display: table;
+    width: 100%;
+}
+
+.left{
+    display: table-cell;
+    float: left;
+    width: 48%;
+    height: fit-content;
+    margin-left: 2%;
+}
+
+.right{
+    float: right; 
+    width: 50%;
+}
+
+.kamjon{
+    width: 100%; 
+    padding-right: 3%;
+}
+
+
+.gumb{
+    background-color: #d63c21;
+    border-radius: 20%;
+    padding: 8px;
+    color: #fff;
+    font-size: 20px;
+}
+
+
+.gumbi{
+    margin-top: 5%;
+    text-align: center;
+}
+
+.join{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.Das-button{
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #d63c21;
+    border: 20px;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.Das-button:hover {background-color: #3e8e41}
+
+.Das-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.Log-button{
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #d63c21;
+    border: 20px;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.Log-button:hover {background-color: #a11800}
+
+.Log-button:active {
+  background-color: #a11800;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.Join-button{
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #d63c21;
+    border: 20px;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.Join-button:hover {background-color: #a11800}
+
+.Join-button:active {
+  background-color: #a11800;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+@media screen and (max-width: 750px) {
+    /* CSS rules here for screens lower than 750px */
+        .right{
+            display: none !important;
+        }
+
+        .logo{
+            width: 35%;
+        }
+    }
+
+@media screen and (max-width: 400px) {
+    /* CSS rules here for screens lower than 750px */
+        .moto{
+            font-size: 30px; 
+        }
+    }
