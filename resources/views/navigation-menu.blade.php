@@ -5,7 +5,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                        <img src="/image/company_photos/logo22.png" class="block h-12 w-auto">
+                        <a href="{{url('/dashboard')}}">
+                            <img src="/image/company_photos/logo22.png" class="block h-12 w-auto">
+                        </a>
                 </div>
 
                 <!-- Navigation Links -->
@@ -23,17 +25,21 @@
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('addb.brand') }}" :active="request()->routeIs('addb.brand')">
-                        {{ __('Add Deal') }}
+                        {{ __('Add enquiry') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('userbrand.brand') }}" :active="request()->routeIs('userbrand.brand')">
+                    <x-jet-nav-link href="{{ route('add.offer') }}" :active="request()->routeIs('add.offer')">
+                        {{ __('Offer ride') }}
+                    </x-jet-nav-link>
+
+                    {{-- <x-jet-nav-link href="{{ route('userbrand.brand') }}" :active="request()->routeIs('userbrand.brand')">
                         {{ __('All My Ads') }}
                     </x-jet-nav-link>
                     
                     <x-jet-nav-link href="{{ route('won.brand') }}" :active="request()->routeIs('won.brand')">
-                        {{ __('Wining Deals') }}
+                        {{ __('Winning Deals') }}
                     </x-jet-nav-link>
-                    
+                     --}}
                 </div>
             </div>
 

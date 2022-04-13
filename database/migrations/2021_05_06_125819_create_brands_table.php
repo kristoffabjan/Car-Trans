@@ -15,40 +15,41 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('brand_name');
-            $table->integer('height');
-            $table->integer('width');
-            $table->integer('length');
-            $table->integer('weight');
-            $table->integer('price');
-            $table->date('end_date');
-            $table->time('end_time');
-            $table->string('brand_image');
-            $table->text('opis');
+            $table->integer('user_id')->nullable();
+            $table->string('brand_name')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('width')->nullable();
+            $table->integer('length')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('price')->nullable();
+            $table->date('end_date')->nullable();
+            $table->time('end_time')->nullable();
+            $table->string('brand_image')->nullable();
+            $table->text('opis')->nullable();
+
+            $table->string('from_name')->nullable();
+            $table->string('from_surname')->nullable();
+            $table->string('to_name')->nullable();
+            $table->string('to_surname')->nullable();
+            $table->string('from_phone')->nullable();
+            $table->string('to_phone')->nullable();
+            $table->string('from_street')->nullable();
+            $table->string('from_city')->nullable();
+            $table->string('from_state')->nullable();
+            $table->string('to_street')->nullable();
+            $table->string('to_city')->nullable();
+            $table->string('to_state')->nullable();
+            $table->integer('from_post_nr')->nullable();
+            $table->string('from_post')->nullable();
+            $table->integer('to_post_nr')->nullable();
+            $table->string('to_post')->nullable();
+
+            $table->date('date_of_go')->nullable();
+            $table->time('time_of_go')->nullable();
+
+            $table->integer('bidder_id')->nullable();
+
             $table->timestamps();
-
-            $table->string('from_name');
-            $table->string('from_surname');
-            $table->string('to_name');
-            $table->string('to_surname');
-            $table->string('from_phone');
-            $table->string('to_phone');
-            $table->string('from_street');
-            $table->string('from_city');
-            $table->string('from_state');
-            $table->string('to_street');
-            $table->string('to_city');
-            $table->string('to_state');
-            $table->integer('from_post_nr');
-            $table->string('from_post');
-            $table->integer('to_post_nr');
-            $table->string('to_post');
-
-            $table->date('date_of_go');
-            $table->time('time_of_go');
-
-            $table->integer('bidder_id');
         });
     }
 

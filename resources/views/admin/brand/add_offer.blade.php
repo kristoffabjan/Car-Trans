@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Add enquiry for a transportation
+            Add offer for a transportation ride
             <b style="float: right"> 
                 <span class="badge bg-danger"></span>
             </b>
@@ -95,7 +95,7 @@
                                         <br>
                                         
                                         <div class="card-header" style="background-color:#17a2b7">
-                                            <strong style="font-size: 20px; color:black; "><i class="fas fa-user"></i> Sender data:</strong>
+                                            <strong style="font-size: 20px; color:black; "><i class="fas fa-user"></i> Shipper data:</strong>
                                             
                                             
                                         </div>

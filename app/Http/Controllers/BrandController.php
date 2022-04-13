@@ -45,15 +45,21 @@ class BrandController extends Controller
         ]);
     }
 
+    #open page of ride enquiry POVPRASEVANJE
     public function Addb(){
         //$brands = Brand::get();
         return view('admin.brand.addb');//, compact('brands'));
     }
 
+    #open page of ride offers PONUDBA ZA VOZNO
+    public function add_offer(){
+        //$brands = Brand::get();
+        return view('admin.brand.add_offer');//, compact('brands'));
+    }
+
     public function StoreBrand(Request $request){
         $validatedData = $request->validate([
             'brand_name' => 'required',
-            'brand_image' => 'required|mimes: jpeg,jpg,png',
         ],
         [
             'brand_name.required' => 'Please Input Brand Of Car',
@@ -68,10 +74,10 @@ class BrandController extends Controller
         // $last_img = $up_location.$img_name;
         // $brand_image->move($up_location,$img_name);
 
-        $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
-        Image::make($brand_image)->resize(1280,720)->save('image/brand/'.$name_gen);
+        // $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+        // Image::make($brand_image)->resize(1280,720)->save('image/brand/'.$name_gen);
 
-        $last_img = 'image/brand/'.$name_gen;
+        // $last_img = 'image/brand/'.$name_gen;
 
         Brand::insert([
             'brand_name'=> $request->brand_name,
@@ -83,7 +89,7 @@ class BrandController extends Controller
             'price'=> $request->price,
             'end_time'=> $request->end_time,
             'end_date'=> $request->end_date,
-            'brand_image' => $last_img,
+            // 'brand_image' => $last_img,
             'opis'=> $request->opis,
             'created_at' => Carbon::now(),
 

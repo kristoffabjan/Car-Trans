@@ -63,6 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 Route::get('/brand/userbrands', [BrandController::class, 'UserBrand'])->name('userbrand.brand');
 Route::get('/brand/addb', [BrandController::class, 'Addb'])->name('addb.brand');
+Route::get('/brand/add_offer', [BrandController::class, 'add_offer'])->name('add.offer');
 Route::post('/brand/add', [BrandController::class, 'StoreBrand'])->name('store.brand');
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
