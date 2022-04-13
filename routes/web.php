@@ -39,11 +39,12 @@ Route::get('/about', function () {
 
 Route::get('/contact', [ContactController::class, 'index'])->name('con');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-   
-    $users = User::all();
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [BrandController::class, 'AllBrand'])->name('dashboard');
+
+Route::get('/all/brand', function () {
+   $users = User::all();
     return view('dashboard', compact('users'));
-})->name('dashboard');
+})->name('all.brand');
 
 
 //Category controller
@@ -60,7 +61,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 //Brand route
 
-Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+Route::get('/dashboard', [BrandController::class, 'AllBrand'])->name('dashboard');
 Route::get('/brand/userbrands', [BrandController::class, 'UserBrand'])->name('userbrand.brand');
 Route::get('/brand/addb', [BrandController::class, 'Addb'])->name('addb.brand');
 Route::get('/brand/add_offer', [BrandController::class, 'add_offer'])->name('add.offer');

@@ -31,14 +31,18 @@
                                                     <i class="fas fa-sort"> </i> Sort by
                                                 </button>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        {{-- offers and enquiry --}}
+                                                        <li><a class="dropdown-item" value="created_atasc" href="/brand/sort/offer"><i class="fas fa-sort-numeric-down"></i> Ride offers only</a></li>
+                                                        <li><a class="dropdown-item" value="created_atasc" href="/brand/sort/enquiry"><i class="fas fa-sort-numeric-down"></i> Ride enquiry only</a></li>
+                                                        
                                                         <li><a class="dropdown-item" value="created_atasc" href="/brand/sort/created_atasc"><i class="fas fa-sort-numeric-down"></i> Newest first</a></li>
                                                         <li><a class="dropdown-item" value="created_atdesc" href="/brand/sort/created_atdesc"><i class="fas fa-sort-numeric-down-alt"></i> Oldest first</a></li>
                                                         <li><a class="dropdown-item" value="date_of_goAsc" href="/brand/sort/date_of_goAsc"><i class="fas fa-sort-numeric-down"></i> Date of Departure Ascending</a></li>
                                                         <li><a class="dropdown-item" value="date_of_goDesc" href="/brand/sort/date_of_goDesc"><i class="fas fa-sort-numeric-down-alt"></i> Date of Departure Descending</a></li>
-                                                        <li><a class="dropdown-item" value="from_state" href="/brand/sort/from_state"><i class="fas fa-sort-alpha-down"></i> State of Departure</a></li>
+                                                        {{-- <li><a class="dropdown-item" value="from_state" href="/brand/sort/from_state"><i class="fas fa-sort-alpha-down"></i> State of Departure</a></li>
                                                         <li><a class="dropdown-item" value="to_state" href="/brand/sort/to_state"><i class="fas fa-sort-alpha-down"></i> State of Arival</a></li>
                                                         <li><a class="dropdown-item" value="from_city" href="/brand/sort/from_city"><i class="fas fa-sort-alpha-down"></i> City of Departure</a></li>
-                                                        <li><a class="dropdown-item" value="to_city" href="/brand/sort/to_city"><i class="fas fa-sort-alpha-down"></i> City of Arival</a></li>
+                                                        <li><a class="dropdown-item" value="to_city" href="/brand/sort/to_city"><i class="fas fa-sort-alpha-down"></i> City of Arival</a></li> --}}
                                                         <li><a class="dropdown-item" value="price" href="/brand/sort/pricel"><i class="fas fa-sort-numeric-down"></i> Price Low-High</a></li>
                                                         <li><a class="dropdown-item" value="price" href="/brand/sort/priceh"><i class="fas fa-sort-numeric-down-alt"></i> Price High-Low</a></li>
                                                         </ul>

@@ -308,6 +308,22 @@ class BrandController extends Controller
                 ]);
                 break;
 
+            case ('offer'): 
+                $sortByDateDesc=$brands->sortBy('created_at');
+                return view("admin.brand.index", [
+                    'brands' => $sortByDateDesc,
+                    'date' => $date,
+                ]);
+                break;
+
+            case ('enquiry'): 
+                $sortByDateDesc=$brands->sortBy('created_at');
+                return view("admin.brand.index", [
+                    'brands' => $sortByDateDesc,
+                    'date' => $date,
+                ]);
+                break;
+
             case ('date_of_goAsc'): 
                 $sortByDateGoAsc=$brands->sortBy('date_of_go');
                 return view("admin.brand.index", [
