@@ -35,7 +35,7 @@
                 @if (Route::has('login'))
                     <div class=" fixed top-0 right-0 px-6 py-4 sm:block">
                         @auth
-                            <a href="{{ url('/brand/all') }}" class="gumb">Home</a>
+                            <a href="{{ url('/dashboard') }}" class="gumb">Home</a>
                         @else
                             <a href="{{ route('login') }}" class="gumb">Login</a>
     

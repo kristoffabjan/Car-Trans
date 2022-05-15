@@ -135,34 +135,112 @@
                                     </tbody>
                                 </table>
 
-                                <table class="table">
-                                    <thead>
-                                        <tr>
+                                <h1>OFFERS: </h1>
 
-                                            {{-- href="{{ route('user.profile', $users) }}" --}}
+                                 
+                                @if(count($offers) >= 0)
+                                    @if (auth()->user()->id == $brands->user_id)
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>User</th>
+                                                    <th>Bid</th>
+                                                    <th>Message</th> 
+                                                    <th>Delete</th>
+                                                </tr>
 
-                                            <th scope="col" style="font-size: 15px">Uploaded by: <a href="{{url('/ratinguser/rates/'.$brands->user_id)}}" class="">{{$brands->user->name}}</td></a> </th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                                @foreach ($offers as $offer)
+                                                    <tr>
+                                                        <td>{{$offer->user->name}} </td>
+                                                        <td>{{$offer->bid}} </td>
+                                                        <td>{{$offer->message}} </td>
+                                                        <td>
+                                                            @if (Auth::user()->id == $offer->user_id)
+                                                                <form method="POST" action="{{route('deleteOffer', $offer )}}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <div class="form-group">
+                                                                        <input type="submit" class="btn btn-danger delete-user" value="Delete offer">
+                                                                    </div>
+                                                                </form>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach 
+                                            </thead>
+                                        </table>
+                                    @else
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>User</th>
+                                                    <th>Bid</th>
+                                                    <th>Message</th> 
+                                                    <th>Delete</th>
+                                                </tr>
 
-                                <div class="card-body">
-                                    <form action="{{url('/brand/bidupdate/'.$brands->id)}}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Update Bid</label>
-                                            <input type="text" name="price" class="form-control" id="exampleInputEmail1" 
-                                            adria-describedby="emailHelp" value="{{$brands->price}}">
-                                            @if(($brands->bidder_id) == 0)
-                                                <div>Bid was not yet placed</div> 
-                                            @else
-                                                 <div>Bid by <a href="{{url('/ratinguser/rates/'.$brands->bidder_id)}}" >{{$brands->bidder->name}}</a></div> 
-                                            @endif
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Update Bid</button>
-                                    </form>
-                                </div>
+                                                @foreach ($offers as $offer)
+                                                    @if (Auth::user()->id == $offer->user_id)
+                                                        <tr>
+                                                            <td>{{$offer->user->name}} </td>
+                                                            <td>{{$offer->bid}} </td>
+                                                            <td>{{$offer->message}} </td>
+                                                            <td>
+                                                                <form method="POST" action="{{route('deleteOffer',  $offer )}}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <div class="form-group">
+                                                                        <input type="submit" class="btn btn-danger delete-user" value="Delete offer">
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach 
+                                            </thead>
+                                        </table>
+                                    @endif
+                                @endif
+
+
+                                {{-- check time --}}
+                                @if (\Carbon\Carbon::now() < $ride_time)
+                                    {{-- check if its ride offer or enquiry --}}
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+
+                                                {{-- href="{{ route('user.profile', $users) }}" --}}
+                                                @if ($brands->ride_type == 1)
+                                                    <th scope="col" style="font-size: 15px">Highest offer by driver: <a href="{{url('/ratinguser/rates/'.$brands->user_id)}}" class="">{{$brands->user->name}}</td></a> </th>
+                                                @else
+                                                    <th scope="col" style="font-size: 15px">Highest offer by customer: <a href="{{url('/ratinguser/rates/'.$brands->user_id)}}" class="">{{$brands->user->name}}</td></a> </th>
+                                                @endif    
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+                                    <div class="card-body">
+                                        <form action="{{route('createOffer', $brands->id)}}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf 
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Update Bid</label>
+                                                <input type="number" name="bid" class="form-control" id="exampleInputEmail1" 
+                                                adria-describedby="emailHelp" >
+
+                                                <label for="exampleInputEmail1">Message</label>
+                                                <input type="text" name="message" placeholder="Add additional data" class="form-control" id="exampleInputEmail1" 
+                                                adria-describedby="emailHelp" >
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Add offer</button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="card-body">
+                                        <h1 class="text-danger">Ride has already proceed</h1>
+                                    </div>
+                                @endif
                                     
                                    
                                     {{-- <tbody>

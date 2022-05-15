@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Offer;
 
 class User extends Authenticatable //implements MustVerifyEmail
 {
@@ -63,4 +64,9 @@ class User extends Authenticatable //implements MustVerifyEmail
     // public function brand(){
     //     return $this->hasMany('Brand');
     // }
+
+    public function offer()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }

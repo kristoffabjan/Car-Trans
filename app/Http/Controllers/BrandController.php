@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\User;
 use App\Models\Multipic;
+use App\Models\Offer;
 use Illuminate\Support\Carbon;
 use Image;
 use Auth;
@@ -252,10 +253,21 @@ class BrandController extends Controller
         //  ->get();
         $bid_placed = Brand::where('bidder_id', 0)
         ->get();
+
+        #check time
+        $date = $brands->date_of_go;
+        $time = $brands->time_of_go;
+        $datetime = $date." ".$time;
+        $ride_time = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$datetime);
+
+        $offers = Offer::where('brand_id', $id)->get();
+
         return view('admin.brand.check', [
             'brands' => $brands,
             'bid_placed' => $bid_placed,
             'images' => $images,
+            'ride_time' => $ride_time,
+            'offers' => $offers
             // 'rates' => $rates
         ]);
     }

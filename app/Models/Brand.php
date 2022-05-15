@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Offer;
 
 class Brand extends Model
 {
@@ -53,6 +54,11 @@ class Brand extends Model
 
     public function bidder(){
         return $this->hasOne(User::class, 'id', 'bidder_id');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 
     // public function user(){

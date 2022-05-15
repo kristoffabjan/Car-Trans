@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RatesController;
 use App\Models\User;
 
@@ -69,7 +70,7 @@ Route::post('/brand/add', [BrandController::class, 'StoreBrand'])->name('store.b
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
-Route::get('/brand/check/{id}', [BrandController::class, 'Check']);
+Route::get('/brand/check/{id}', [BrandController::class, 'Check'])->name('brand');
 Route::get('/brand/won', [BrandController::class, 'Won'])->name('won.brand');
 Route::get('/brand/getinfo/{id}', [BrandController::class, 'GetInfo']);
 Route::get('/brand/sort/{sort}', [BrandController::class, 'Sort'])->name('sort.brand');
@@ -78,6 +79,11 @@ Route::post('/brand/filter/{brands}', [BrandController::class, 'Filter'])->name(
 //Multi image rout
 Route::get('/multi/image/{brands}', [BrandController::class, 'Multipic'])->name('multi.image');
 Route::post('/multi/add/{brands}', [BrandController::class, 'StoreImg'])->name('store.image');
+
+//Offers
+Route::post('addOffer/{id}', [OfferController::class, 'create'])->name('createOffer');
+Route::delete('deleteOffer/{offer}', [OfferController::class, 'delete'])->name('deleteOffer');
+
 
 //Multi phozos rout
 //Route::get('/photos/image', [BrandController::class, 'Photos'])->name('photos.image');
