@@ -205,68 +205,42 @@
 
                                 {{-- check time --}}
                                 @auth
-                                @if (\Carbon\Carbon::now() < $ride_time)
-                                {{-- check if its ride offer or enquiry --}}
-                                @if ( Auth::user()->id != $brands->user_id && !Auth::user()->has_offer_for_brand($brands) )
+                                    @if (\Carbon\Carbon::now() < $ride_time)
+                                    {{-- check if its ride offer or enquiry --}}
+                                        @if ( Auth::user()->id != $brands->user_id && !Auth::user()->has_offer_for_brand($brands) )
+                                            <div class="card-body">
+                                                <form action="{{route('createOffer', $brands->id)}}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf 
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Bid(€)</label>
+                                                        <input type="number" name="bid" class="form-control" id="exampleInputEmail1" 
+                                                        adria-describedby="emailHelp" >
+
+                                                        <label for="exampleInputEmail1">Message</label>
+                                                        <input type="text" name="message" placeholder="Add additional data" class="form-control" id="exampleInputEmail1" 
+                                                        adria-describedby="emailHelp" >
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Add offer</button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    @else
+                                        <div class="card-body">
+                                            <h1 class="text-danger">Ride has already proceed</h1>
+                                        </div>
+                                    @endif
+
+
+                                    @if ( Auth::user()->id != $brands->user->id)
                                     <div class="card-body">
-                                        <form action="{{route('createOffer', $brands->id)}}" method="POST"
-                                            enctype="multipart/form-data">
-                                            @csrf 
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Bid(€)</label>
-                                                <input type="number" name="bid" class="form-control" id="exampleInputEmail1" 
-                                                adria-describedby="emailHelp" >
-
-                                                <label for="exampleInputEmail1">Message</label>
-                                                <input type="text" name="message" placeholder="Add additional data" class="form-control" id="exampleInputEmail1" 
-                                                adria-describedby="emailHelp" >
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Add offer</button>
-                                        </form>
+                                        <h5>Rate {{$brands->user->name}}</h5>
+                                        <a class="btn btn-success" href="{{route('user.profile', $brands->user)}}" role="button">Rate user</a>
                                     </div>
-                                @endif
-                            @else
-                                <div class="card-body">
-                                    <h1 class="text-danger">Ride has already proceed</h1>
-                                </div>
-                            @endif
-                                @endauth
-                                    
-                                   
-                                    {{-- <tbody>
-                                        <!-- @php($i=1) -->
-                                        @foreach ($brands as $brand)
-                                            <div href="{{url('brand/edit/'.$brand->id)}}">
-                                                <tr>
-                                                    <th scope="row">{{$brands->firstItem()+$loop->index}}</th>
-                                                    <td >{{$brand->user->name}}</td>
-                                                    <td >{{$brand->brand_name}}</td>
-                                                    <td >{{$brand->height}} cm</td>
-                                                    <td >{{$brand->width}} cm</td>
-                                                    <td >{{$brand->weight}} kg</td>
-                                                    <td >{{$brand->price}} €</td>
-                                                    <td >{{$brand->end_time}}</td>
-                                                    <td ><img src="{{asset($brand->brand_image)}}" style="height:80px; width 70px;"  alt="">  </td>
-                                                    <td >
-                                                        @if($brand->created_at == NULL)
-                                                        <span class="text-danger">No Date Set</span>
-                                                        @else
-                                                        {{$brand->created_at ->diffForHumans()}}</td>
-                                                        @endif
-                                                    <td>
-                                                        <a href="{{url('brand/edit/'.$brand->id)}}" class="btn btn-info">Edit</a>
-                                                        <a href="{{url('brand/delete/'.$brand->id)}}" class="btn btn-danger" 
-                                                            onclick="return confirm('Are you sure to delete')" class="btn btn-danger">Delete</a>
-                                                        <a href="{{url('brand/check/'.$brand->id)}}" class="btn btn-info">Check</a>
-                                                    </td>
-                                                </tr>
-                                            </div>
-                                        @endforeach
-                                        
-                                    </tbody> --}}
-                                {{-- </table>  --}}
+                                    @endif
 
-                                {{-- {{$brands->links()}}--}}
+
+                                @endauth
 
                             </div> 
                         </div>

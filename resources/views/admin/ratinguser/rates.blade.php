@@ -14,11 +14,12 @@
                 </div class="container">
                     <div class="row">                        
                         
-                        
+                        <h2>Rates of user <strong>{{$user->name}}</strong></h2>
                         <div class="col-md-2">
                             <form action="{{ route('store.rate', $user) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @if ($nowuser != ($user->id))
+                                {{-- $nowuser != ($user->id) --}}
+                                @if (true)
                                 
                                 <b style="font-size: 20px">Please rate:</b>
          

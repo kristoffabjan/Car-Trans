@@ -63,6 +63,7 @@ Route::get('/all/brand', function () {
 //Brand route
 
 Route::get('/dashboard', [BrandController::class, 'AllBrand'])->name('dashboard');
+Route::get('/myRides/{user}', [BrandController::class, 'my_rides'])->name('my_rides');
 Route::get('/brand/userbrands', [BrandController::class, 'UserBrand'])->name('userbrand.brand');
 Route::get('/brand/addb', [BrandController::class, 'Addb'])->name('addb.brand');
 Route::get('/brand/add_offer', [BrandController::class, 'add_offer'])->name('add.offer');

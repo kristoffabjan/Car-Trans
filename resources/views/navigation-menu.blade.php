@@ -20,6 +20,7 @@
                         {{ __('All Categories') }}
                     </x-jet-nav-link> --}}
 
+                    @auth
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('All Deals') }}
                     </x-jet-nav-link>
@@ -35,6 +36,11 @@
                     <x-jet-nav-link href="{{ route('all.brand') }}" :active="request()->routeIs('all.brand')">
                         {{ __('Users') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{route('my_rides', Auth::user() )}}" :active="request()->routeIs('my_rides')">
+                        {{ __('My transportations') }}
+                    </x-jet-nav-link>
+                    @endauth
 
                     {{-- <x-jet-nav-link href="{{ route('userbrand.brand') }}" :active="request()->routeIs('userbrand.brand')">
                         {{ __('All My Ads') }}

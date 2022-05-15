@@ -26,6 +26,15 @@ class BrandController extends Controller
         ]);
     }
 
+    public function my_rides(User $user){
+        $brands = Brand::where('user_id', $user->id)->paginate(20); 
+        $date = new Carbon;
+        return view("admin.brand.my_brands", [
+            'brands' => $brands,
+            'date' => $date,
+        ]);
+    }
+
     public function UserBrand(){
         //$user_id = auth()->user('id');
         //$user = User::find($user_id);
