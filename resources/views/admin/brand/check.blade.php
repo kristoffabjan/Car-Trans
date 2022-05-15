@@ -204,28 +204,16 @@
 
 
                                 {{-- check time --}}
+                                @auth
                                 @if (\Carbon\Carbon::now() < $ride_time)
-                                    {{-- check if its ride offer or enquiry --}}
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-
-                                                {{-- href="{{ route('user.profile', $users) }}" --}}
-                                                @if ($brands->ride_type == 1)
-                                                    <th scope="col" style="font-size: 15px">Highest offer by driver: <a href="{{url('/ratinguser/rates/'.$brands->user_id)}}" class="">{{$brands->user->name}}</td></a> </th>
-                                                @else
-                                                    <th scope="col" style="font-size: 15px">Highest offer by customer: <a href="{{url('/ratinguser/rates/'.$brands->user_id)}}" class="">{{$brands->user->name}}</td></a> </th>
-                                                @endif    
-                                            </tr>
-                                        </thead>
-                                    </table>
-
+                                {{-- check if its ride offer or enquiry --}}
+                                @if ( Auth::user()->id != $brands->user_id && !Auth::user()->has_offer_for_brand($brands) )
                                     <div class="card-body">
                                         <form action="{{route('createOffer', $brands->id)}}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf 
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Update Bid</label>
+                                                <label for="exampleInputEmail1">Bid(€)</label>
                                                 <input type="number" name="bid" class="form-control" id="exampleInputEmail1" 
                                                 adria-describedby="emailHelp" >
 
@@ -236,11 +224,13 @@
                                             <button type="submit" class="btn btn-primary">Add offer</button>
                                         </form>
                                     </div>
-                                @else
-                                    <div class="card-body">
-                                        <h1 class="text-danger">Ride has already proceed</h1>
-                                    </div>
                                 @endif
+                            @else
+                                <div class="card-body">
+                                    <h1 class="text-danger">Ride has already proceed</h1>
+                                </div>
+                            @endif
+                                @endauth
                                     
                                    
                                     {{-- <tbody>

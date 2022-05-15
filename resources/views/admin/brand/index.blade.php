@@ -63,7 +63,8 @@
                                     <tbody>
                                         <!-- @php($i=1) -->
                                         @foreach ($brands as $brand)
-                                            @if($date <= $brand->end_date) 
+                                            {{-- show only future rides --}}
+                                            @if(\Carbon\Carbon::now() <= \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$brand->date_of_go." ".$brand->time_of_go) ) 
                                             <div href="{{url('brand/edit/'.$brand->id)}}">
                                                     <tr data-href="{{url('brand/check/'.$brand->id)}}">
                                                         {{-- <th scope="row">{{$brands->firstItem()+$loop->index}}</th> --}}

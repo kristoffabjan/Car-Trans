@@ -69,4 +69,16 @@ class User extends Authenticatable //implements MustVerifyEmail
     {
         return $this->hasMany(Offer::class);
     }
+
+    public function has_offer_for_brand(Brand $brand)   
+    {
+        $condition = ['user_id' => $this->id, 'brand_id' => $brand->id];
+        // if ( Offer::where($condition)->exists() ) {
+        //     return true;
+        // }else{
+        //     return false;
+        // }
+
+        return ( Offer::where($condition)->exists() ) ? true : false;
+    }
 }
