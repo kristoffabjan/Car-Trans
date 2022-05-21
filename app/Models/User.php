@@ -81,4 +81,9 @@ class User extends Authenticatable //implements MustVerifyEmail
 
         return ( Offer::where($condition)->exists() ) ? true : false;
     }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }
