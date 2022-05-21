@@ -40,6 +40,10 @@
                     <x-jet-nav-link href="{{route('my_rides', Auth::user() )}}" :active="request()->routeIs('my_rides')">
                         {{ __('My transportations') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{route('all.chats', Auth::user() )}}" :active="request()->routeIs('all.chats')">
+                        {{ __('Chat') }}
+                    </x-jet-nav-link>
                     @endauth
 
                     {{-- <x-jet-nav-link href="{{ route('userbrand.brand') }}" :active="request()->routeIs('userbrand.brand')">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RatesController;
 use App\Models\User;
@@ -101,3 +102,6 @@ Route::post('/brand/bidupdate/{id}', [BrandController::class, 'BidUpdate']);
 //User Rates
 Route::get('/ratinguser/rates/{user}', [RatesController::class, 'ViewRates'])->name('user.profile');
 Route::post('/ratinguser/store/{user}', [RatesController::class, 'StoreRate'])->name('store.rate');
+
+//Chat controller
+Route::get('/myChats/{user}', [ChatController::class, 'my_chats'])->name('all.chats');
