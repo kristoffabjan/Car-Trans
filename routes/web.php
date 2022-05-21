@@ -104,4 +104,4 @@ Route::get('/ratinguser/rates/{user}', [RatesController::class, 'ViewRates'])->n
 Route::post('/ratinguser/store/{user}', [RatesController::class, 'StoreRate'])->name('store.rate');
 
 //Chat controller
-Route::get('/myChats/{user}', [ChatController::class, 'my_chats'])->name('all.chats');
+Route::get('/myChats/{user}/{user2?}', [ChatController::class, 'my_chats'])->name('all.chats');

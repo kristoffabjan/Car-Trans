@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,47 @@ class ChatController extends Controller
     }
    
     
-   public function my_chats(User $user)
+    #optional second user as parameter
+   public function my_chats(User $user, User $user2 = null)
    {
-        return view("admin.chat");
+
+        $users = null;
+        $chats = null;
+        // if ... then show chat with that person on main window
+        if (!empty($user2)) {
+            // users we chat with
+            $users_id_1 = Chat::where(['user_id_from' => $user->id])
+                        ->orWhere(['user_id_to' => $user->id])
+                        ->pluck('user_id_from')
+                        ->unique()
+                        ->toArray();
+            $users_id_2 = Chat::where(['user_id_from' => $user->id])
+                        ->orWhere(['user_id_to' => $user->id])
+                        ->pluck('user_id_to')
+                        ->unique()
+                        ->toArray();
+
+            // all users we chatted with
+            $users = User::whereIn('id', array_merge($users_id_1, $users_id_2))
+                        ->get();
+
+            // chats with $user2, ordered by time and users
+            $chats = Chat::where([
+                        ['user_id_from', '=',  $user->id],
+                        ['user_id_to', '=', $user2->id]
+                        ])
+                        ->orWhere([
+                            ['user_id_from','=', $user2->id], 
+                            ['user_id_to' ,'=', $user->id]
+                        ])
+                        ->orderBy('created_at', 'asc')
+                        ->orderBy('user_id_from', 'asc')
+                        ->get();
+        }
+        return view("admin.chat", [
+            'users' => $users,
+            'chats' => $chats,
+            'receiver' => $user2
+        ]);
     }
 }
