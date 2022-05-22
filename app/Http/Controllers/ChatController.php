@@ -22,23 +22,25 @@ class ChatController extends Controller
         $users = null;
         $chats = null;
         // if ... then show chat with that person on main window
+
+        // users we chat with
+        $users_id_1 = Chat::where(['user_id_from' => $user->id])
+        ->orWhere(['user_id_to' => $user->id])
+        ->pluck('user_id_from')
+        ->unique()
+        ->toArray();
+
+        $users_id_2 = Chat::where(['user_id_from' => $user->id])
+                ->orWhere(['user_id_to' => $user->id])
+                ->pluck('user_id_to')
+                ->unique()
+                ->toArray();
+
+        // all users we chatted with
+        $users = User::whereIn('id', array_merge($users_id_1, $users_id_2))
+                ->get();
+
         if (!empty($user2)) {
-            // users we chat with
-            $users_id_1 = Chat::where(['user_id_from' => $user->id])
-                        ->orWhere(['user_id_to' => $user->id])
-                        ->pluck('user_id_from')
-                        ->unique()
-                        ->toArray();
-            $users_id_2 = Chat::where(['user_id_from' => $user->id])
-                        ->orWhere(['user_id_to' => $user->id])
-                        ->pluck('user_id_to')
-                        ->unique()
-                        ->toArray();
-
-            // all users we chatted with
-            $users = User::whereIn('id', array_merge($users_id_1, $users_id_2))
-                        ->get();
-
             // chats with $user2, ordered by time and users
             $chats = Chat::where([
                         ['user_id_from', '=',  $user->id],
@@ -52,10 +54,27 @@ class ChatController extends Controller
                         ->orderBy('user_id_from', 'asc')
                         ->get();
         }
+
+
         return view("admin.chat", [
             'users' => $users,
             'chats' => $chats,
             'receiver' => $user2
         ]);
+    }
+
+    public function send_message(Request $request, User $user1, User $user2)
+    {
+        $validatedData = $request->validate([
+            'message' => 'required',
+        ]);
+
+        Chat::insert([
+            'user_id_from' => $user1->id,
+            'user_id_to' => $user2->id,
+            'message' => $request->message
+        ]);
+
+        return redirect()->route('all.chats', [$user1, $user2]);
     }
 }

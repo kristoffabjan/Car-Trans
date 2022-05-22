@@ -105,3 +105,4 @@ Route::post('/ratinguser/store/{user}', [RatesController::class, 'StoreRate'])->
 
 //Chat controller
 Route::get('/myChats/{user}/{user2?}', [ChatController::class, 'my_chats'])->name('all.chats');
+Route::post('/sendMessage/{user1}/{user2}', [ChatController::class, 'send_message'])->name('send.message');
