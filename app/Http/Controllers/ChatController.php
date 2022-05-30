@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -72,7 +73,9 @@ class ChatController extends Controller
         Chat::insert([
             'user_id_from' => $user1->id,
             'user_id_to' => $user2->id,
-            'message' => $request->message
+            'message' => $request->message,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
         return redirect()->route('all.chats', [$user1, $user2]);
